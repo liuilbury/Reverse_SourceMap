@@ -1,0 +1,5 @@
+aux_source_directory(../../Project/src project_src)
+aux_source_directory(./ test_src)
+add_executable(run_actual_tests  ${project_src} ${test_src} test_revSourcemap.cpp)
+target_link_libraries(run_actual_tests gtest gtest_main)
+#add_definitions(-DDEBUG)
