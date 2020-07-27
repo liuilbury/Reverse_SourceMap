@@ -7,7 +7,7 @@ char base64::intToChar(int number) {
   if (0 <= number && number <= 63) {
 	return base64Map[number];
   }
-  throw ("Must be between 0 and 63: " + number);
+  throw std::domain_error("Must be between 0 and 63: " + number);
 }
 int base64::charToInt(char charCode) {
   // 0 - 25: ABCDEFGHIJKLMNOPQRSTUVWXYZ

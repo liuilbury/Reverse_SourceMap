@@ -30,7 +30,7 @@ TEST_F(test_base64, char_false) {
 }
 
 TEST_F(test_base64,int_false){
-  EXPECT_THROW(test.intToChar(-1),char*);
-  EXPECT_THROW(test.intToChar(64),char*);
-  EXPECT_THROW(test.intToChar(1000),char*);
+  EXPECT_THROW(test.intToChar(-1),std::domain_error);
+  EXPECT_THROW(test.intToChar(64),std::domain_error);
+  EXPECT_THROW(test.intToChar(1000),std::domain_error);
 }

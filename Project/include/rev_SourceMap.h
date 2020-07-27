@@ -16,8 +16,9 @@ struct Res{
 };
 class rev_SourceMap : public vlq {
  public:
-  void run(std::string);
-  std::vector<Res>rev_SourceMap::findAll(std::vector<std::pair<int,int>>);
+  void runString(std::string);
+  void runFile(std::string);
+  std::vector<Res>findAll(std::vector<std::pair<int,int>>);
   Res find(int row, int col);
  private:
   sourceMap_Val now;

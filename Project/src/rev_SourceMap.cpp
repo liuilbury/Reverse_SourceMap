@@ -116,13 +116,16 @@ std::vector<std::string> rev_SourceMap::handleMappings(std::string mapping) {
   }
   return res;
 }
-void rev_SourceMap::run(std::string mapPath) {
+void rev_SourceMap::runFile(std::string mapPath) {
   std::string s;
   std::ifstream infile;
   infile.open(mapPath);
   std::getline(infile, s);
   init(s);
   infile.close();
+}
+void rev_SourceMap::runString(std::string mapString) {
+	init(mapString);
 }
 
 Res rev_SourceMap::find(int row, int col) {

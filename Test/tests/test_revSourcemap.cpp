@@ -15,7 +15,7 @@ class test_revMap : public ::testing::Test {
   }
 };
 TEST_F(test_revMap, source_map_dev) {
-  test.run("C:\\Users\\liulizhang\\CLionProjects\\Reverse-SourceMap\\Test\\tests\\testMap\\dev\\source-map\\bundle.js.map");
+  test.runFile("Test/tests/testMap/dev/source-map/bundle.js.map");
   EXPECT_TRUE(check(test.find(87,10),(Res{83,1,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(84,18),(Res{83,1,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(20,30),(Res{19,1,"webpack:///webpack/bootstrap"})));
@@ -24,7 +24,7 @@ TEST_F(test_revMap, source_map_dev) {
 }
 
 TEST_F(test_revMap, cheap_module_source_map_dev) {
-  test.run("C:\\Users\\liulizhang\\CLionProjects\\Reverse-SourceMap\\Test\\tests\\testMap\\dev\\cheap-module-source-map\\bundle.js.map");
+  test.runFile("Test/tests/testMap/dev/cheap-module-source-map/bundle.js.map");
   EXPECT_TRUE(check(test.find(87,10),(Res{83,1,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(84,18),(Res{83,1,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(20,30),(Res{19,1,"webpack:///webpack/bootstrap"})));
@@ -34,7 +34,7 @@ TEST_F(test_revMap, cheap_module_source_map_dev) {
 
 
 TEST_F(test_revMap, source_map_prod) {
-  test.run("C:\\Users\\liulizhang\\CLionProjects\\Reverse-SourceMap\\Test\\tests\\testMap\\prod\\source-map\\bundle.js.map");
+  test.runFile("Test/tests/testMap/prod/source-map/bundle.js.map");
   //EXPECT_TRUE(check(test.find(1,911),(Res{1,911,"bundle.js"})));
   EXPECT_TRUE(check(test.find(1,902),(Res{83,10,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(1,110),(Res{19,22,"webpack:///webpack/bootstrap"})));
@@ -43,7 +43,7 @@ TEST_F(test_revMap, source_map_prod) {
 }
 
 /*TEST_F(test_revMap, cheap_modluesource_map_prod) {
-  test.run("C:\\Users\\liulizhang\\CLionProjects\\Reverse-SourceMap\\Test\\tests\\testMap\\prod\\cheap-module-source-map\\bundle.js.map");
+  test.run("Test/tests/testMap/prod/cheap-module-source-map/bundle.js.map");
   EXPECT_TRUE(check(test.find(1,911),(Res{1,911,"bundle.js"})));
   EXPECT_TRUE(check(test.find(1,902),(Res{83,10,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(1,110),(Res{19,22,"webpack:///webpack/bootstrap"})));

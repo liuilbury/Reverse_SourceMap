@@ -29,7 +29,7 @@ std::vector<int> vlq::revCode(std::string vStr) {
   bool continuation=0;
   for(int i=0;i<vStr.size();i++){
 	int digit=base64().charToInt(vStr[i]);
-	if(digit==-1)throw "Invalid base64 digit"+vStr[i];
+	if(digit==-1)throw std::domain_error("Invalid base64 digit"+vStr[i]);
 	continuation=digit&VLQ_CONTINUATION_BIT;
 	digit&=VLQ_BASE_MASK;
 	result+=digit<<shift;
@@ -42,6 +42,6 @@ std::vector<int> vlq::revCode(std::string vStr) {
 	  result=shift=0;
 	}
   }
-  if(continuation)throw "Expected more digits in base 64 VLQ value.";
+  if(continuation)throw std::domain_error("Expected more digits in base 64 VLQ value.");
   return ans;
 }

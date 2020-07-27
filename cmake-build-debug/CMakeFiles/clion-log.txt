@@ -1,5 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\liulizhang\CLionProjects\Reverse-SourceMap
--- Could NOT find PythonInterp (missing: PYTHON_EXECUTABLE) 
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/liulizhang/CLionProjects/Reverse-SourceMap/cmake-build-debug

@@ -5,6 +5,7 @@
 #ifndef REVERSE_SOURCEMAP_INCLUDE_BASE64_H_
 #define REVERSE_SOURCEMAP_INCLUDE_BASE64_H_
 #include <string>
+#include <stdexcept>
 class base64 {
  public:
   const std::string base64Map = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

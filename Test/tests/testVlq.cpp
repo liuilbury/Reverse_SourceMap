@@ -21,9 +21,9 @@ TEST_F(testVlq, vlq_true) {
   EXPECT_EQ(test.revCode("ace"),(std::vector<int>{13,14,15}));
 }
 TEST_F(testVlq,vlq_false_Len){
-  EXPECT_THROW(test.revCode("k"),char*);
+  EXPECT_THROW(test.revCode("k"),std::domain_error);
 
 }
 TEST_F(testVlq,vlq_false_base64){
-  EXPECT_THROW(test.revCode("k@"),char*);
+  EXPECT_THROW(test.revCode("k@"),std::domain_error);
 }
