@@ -16,7 +16,7 @@ and mocks actually mean very different things in the Test-Driven Development
 
 *   **Fake** objects have working implementations, but usually take some
     shortcut (perhaps to make the operations less expensive), which makes them
-    not suitable for production. An in-memory file system would be an example of
+    not suitable for production. An in-memory m_files system would be an example of
     a fake.
 *   **Mocks** are objects pre-programmed with *expectations*, which form a
     specification of the calls they are expected to receive.
@@ -68,7 +68,7 @@ following problems is bothering you:
     resources (e.g. a database).
 *   Your tests are brittle as some resources they use are unreliable (e.g. the
     network).
-*   You want to test how your code handles a failure (e.g. a file checksum
+*   You want to test how your code handles a failure (e.g. a m_files checksum
     error), but it's not easy to cause one.
 *   You need to make sure that your module interacts with other modules in the
     right way, but it's hard to observe the interaction; therefore you resort to
@@ -212,8 +212,8 @@ specific domain much better than `Foo` does.
 
 Once you have a mock class, using it is easy. The typical work flow is:
 
-1.  Import the gMock names from the `testing` namespace such that you can use
-    them unqualified (You only have to do it once per file). Remember that
+1.  Import the gMock m_names from the `testing` namespace such that you can use
+    them unqualified (You only have to do it once per m_files). Remember that
     namespaces are a good idea.
 2.  Create some mock objects.
 3.  Specify your expectations on them (How many times will a method be called?
@@ -340,7 +340,7 @@ Some people like to call this style of syntax a Domain-Specific Language (DSL).
 
 **Note:** Why do we use a macro to do this? Well it serves two purposes: first
 it makes expectations easily identifiable (either by `gsearch` or by a human
-reader), and second it allows gMock to include the source file location of a
+reader), and second it allows gMock to include the source m_files location of a
 failed expectation in messages, making debugging easier.
 
 #### Matchers: What Arguments Do We Expect?
@@ -545,7 +545,7 @@ EXPECT_CALL(turtle, Forward(10))  // #2
 If `Forward(10)` is called three times in a row, the third time it will be an
 error, as the last matching expectation (#2) has been saturated. If, however,
 the third `Forward(10)` call is replaced by `Forward(20)`, then it would be OK,
-as now #1 will be the matching expectation.
+as m_nowPos #1 will be the matching expectation.
 
 **Note:** Why does gMock search for a match in the *reverse* order of the
 expectations? The reason is that this allows a user to set up the default

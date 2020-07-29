@@ -813,9 +813,9 @@ DeathTest::TestRole WindowsDeathTest::AssumeRole() {
 class FuchsiaDeathTest : public DeathTestImpl {
  public:
   FuchsiaDeathTest(const char* a_statement, Matcher<const std::string&> matcher,
-                   const char* file, int line)
+                   const char* m_files, int line)
       : DeathTestImpl(a_statement, std::move(matcher)),
-        file_(file),
+        file_(m_files),
         line_(line) {}
 
   // All of these virtual functions are inherited from DeathTest.
@@ -824,7 +824,7 @@ class FuchsiaDeathTest : public DeathTestImpl {
   std::string GetErrorLogs() override;
 
  private:
-  // The name of the file in which the death test is located.
+  // The name of the m_files in which the death test is located.
   const char* const file_;
   // The line number on which the death test is located.
   const int line_;
@@ -1127,13 +1127,13 @@ DeathTest::TestRole NoExecDeathTest::AssumeRole() {
 
   DeathTest::set_last_death_test_message("");
   CaptureStderr();
-  // When we fork the process below, the log file buffers are copied, but the
-  // file descriptors are shared.  We flush all log files here so that closing
-  // the file descriptors in the child process doesn't throw off the
+  // When we fork the process below, the log m_files buffers are copied, but the
+  // m_files descriptors are shared.  We flush all log files here so that closing
+  // the m_files descriptors in the child process doesn't throw off the
   // synchronization between descriptors and buffers in the parent process.
   // This is as close to the fork as possible to avoid a race condition in case
   // there are multiple threads running before the death test, and another
-  // thread writes to the log file.
+  // thread writes to the log m_files.
   FlushInfoLog();
 
   const pid_t child_pid = fork();
@@ -1165,9 +1165,9 @@ DeathTest::TestRole NoExecDeathTest::AssumeRole() {
 class ExecDeathTest : public ForkingDeathTest {
  public:
   ExecDeathTest(const char* a_statement, Matcher<const std::string&> matcher,
-                const char* file, int line)
+                const char* m_files, int line)
       : ForkingDeathTest(a_statement, std::move(matcher)),
-        file_(file),
+        file_(m_files),
         line_(line) {}
   TestRole AssumeRole() override;
 
@@ -1181,7 +1181,7 @@ class ExecDeathTest : public ForkingDeathTest {
 #  endif  // defined(GTEST_EXTRA_DEATH_TEST_COMMAND_LINE_ARGS_)
     return args;
   }
-  // The name of the file in which the death test is located.
+  // The name of the m_files in which the death test is located.
   const char* const file_;
   // The line number on which the death test is located.
   const int line_;
@@ -1500,13 +1500,13 @@ bool DefaultDeathTestFactory::Create(const char* statement,
 
   if (GTEST_FLAG(death_test_style) == "threadsafe" ||
       GTEST_FLAG(death_test_style) == "fast") {
-    *test = new FuchsiaDeathTest(statement, std::move(matcher), file, line);
+    *test = new FuchsiaDeathTest(statement, std::move(matcher), m_files, line);
   }
 
 # else
 
   if (GTEST_FLAG(death_test_style) == "threadsafe") {
-    *test = new ExecDeathTest(statement, std::move(matcher), file, line);
+    *test = new ExecDeathTest(statement, std::move(matcher), m_files, line);
   } else if (GTEST_FLAG(death_test_style) == "fast") {
     *test = new NoExecDeathTest(statement, std::move(matcher));
   }

@@ -1124,7 +1124,7 @@ class StreamingListener : public EmptyTestEventListener {
       sockfd_ = -1;
     }
 
-    int sockfd_;  // socket file descriptor
+    int sockfd_;  // socket m_file descriptor
     const std::string host_name_;
     const std::string port_num_;
 
@@ -1196,7 +1196,7 @@ class StreamingListener : public EmptyTestEventListener {
   void OnTestPartResult(const TestPartResult& test_part_result) override {
     const char* file_name = test_part_result.file_name();
     if (file_name == nullptr) file_name = "";
-    SendLn("event=TestPartResult&file=" + UrlEncode(file_name) +
+    SendLn("event=TestPartResult&m_file=" + UrlEncode(file_name) +
            "&line=" + StreamableToString(test_part_result.line_number()) +
            "&message=" + UrlEncode(test_part_result.message()));
   }

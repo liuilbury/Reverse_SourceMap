@@ -510,7 +510,7 @@ If you need to use fatal assertions in a function that returns non-void, one
 option is to make the function return the value in an out parameter instead. For
 example, you can rewrite `T2 Foo(T1 x)` to `void Foo(T1 x, T2* result)`. You
 need to make sure that `*result` contains some sensible value even when the
-function returns prematurely. As the function now returns `void`, you can use
+function returns prematurely. As the function m_nowPos returns `void`, you can use
 any assertion inside of it.
 
 If changing the function's type is not an option, you should just use assertions
@@ -925,8 +925,8 @@ ScopedTrace trace("file_path", line_number, message);
 ```
 
 where `message` can be anything streamable to `std::ostream`. `SCOPED_TRACE`
-macro will cause the current file name, line number, and the given message to be
-added in every failure message. `ScopedTrace` accepts explicit file name and
+macro will cause the current m_files name, line number, and the given message to be
+added in every failure message. `ScopedTrace` accepts explicit m_files name and
 line number in arguments, which is useful for writing test helpers. The effect
 will be undone when the control leaves the current lexical scope.
 
@@ -984,7 +984,7 @@ Some tips on using `SCOPED_TRACE`:
     scope. In this case, all active trace points will be included in the failure
     messages, in reverse order they are encountered.
 5.  The trace dump is clickable in Emacs - hit `return` on a line number and
-    you'll be taken to that line in the source file!
+    you'll be taken to that line in the source m_files!
 
 ### Propagating Fatal Failures
 
@@ -1393,7 +1393,7 @@ To distinguish different instances of the pattern (yes, you can instantiate it
 more than once), the first argument to `INSTANTIATE_TEST_SUITE_P` is a prefix
 that will be added to the actual test suite name. Remember to pick unique
 prefixes for different instantiations. The tests from the instantiation above
-will have these names:
+will have these m_names:
 
 *   `InstantiationName/FooTest.DoesBlah/0` for `"meeny"`
 *   `InstantiationName/FooTest.DoesBlah/1` for `"miny"`
@@ -1402,7 +1402,7 @@ will have these names:
 *   `InstantiationName/FooTest.HasBlahBlah/1` for `"miny"`
 *   `InstantiationName/FooTest.HasBlahBlah/2` for `"moe"`
 
-You can use these names in [`--gtest_filter`](#running-a-subset-of-the-tests).
+You can use these m_names in [`--gtest_filter`](#running-a-subset-of-the-tests).
 
 This statement will instantiate all tests from `FooTest` again, each with
 parameter values `"cat"` and `"dog"`:
@@ -1413,7 +1413,7 @@ INSTANTIATE_TEST_SUITE_P(AnotherInstantiationName, FooTest,
                          testing::ValuesIn(pets));
 ```
 
-The tests from the instantiation above will have these names:
+The tests from the instantiation above will have these m_names:
 
 *   `AnotherInstantiationName/FooTest.DoesBlah/0` for `"cat"`
 *   `AnotherInstantiationName/FooTest.DoesBlah/1` for `"dog"`
@@ -1431,7 +1431,7 @@ You can see [sample7_unittest.cc] and [sample8_unittest.cc] for more examples.
 
 ### Creating Value-Parameterized Abstract Tests
 
-In the above, we define and instantiate `FooTest` in the *same* source file.
+In the above, we define and instantiate `FooTest` in the *same* source m_files.
 Sometimes you may want to define value-parameterized tests in a library and let
 other people instantiate them later. This pattern is known as *abstract tests*.
 As an example of its application, when you are designing an interface you can
@@ -1443,7 +1443,7 @@ get all the interface-conformance tests for free.
 To define abstract tests, you should organize your code like this:
 
 1.  Put the definition of the parameterized test fixture class (e.g. `FooTest`)
-    in a header file, say `foo_param_test.h`. Think of this as *declaring* your
+    in a header m_files, say `foo_param_test.h`. Think of this as *declaring* your
     abstract tests.
 2.  Put the `TEST_P` definitions in `foo_param_test.cc`, which includes
     `foo_param_test.h`. Think of this as *implementing* your abstract tests.
@@ -1464,9 +1464,9 @@ the test parameters. The function should accept one argument of type
 returns the value of `testing::PrintToString(GetParam())`. It does not work for
 `std::string` or C strings.
 
-NOTE: test names must be non-empty, unique, and may only contain ASCII
+NOTE: test m_names must be non-empty, unique, and may only contain ASCII
 alphanumeric characters. In particular, they
-[should not contain underscores](faq.md#why-should-test-suite-names-and-test-names-not-contain-underscore)
+[should not contain underscores](faq.md#why-should-test-suite-m_names-and-test-m_names-not-contain-underscore)
 
 ```c++
 class MyTestSuite : public testing::TestWithParam<int> {};
@@ -1482,7 +1482,7 @@ INSTANTIATE_TEST_SUITE_P(MyGroup, MyTestSuite, testing::Range(0, 10),
 
 Providing a custom functor allows for more control over test parameter name
 generation, especially for types where the automatic conversion does not
-generate helpful parameter names (e.g. strings as demonstrated above). The
+generate helpful parameter m_names (e.g. strings as demonstrated above). The
 following example illustrates this for multiple parameters, an enumeration type
 and a string, and also demonstrates how to combine generators. It uses a lambda
 for conciseness:
@@ -1623,7 +1623,7 @@ TYPED_TEST_P(FooTest, HasPropertyA) { ... }
 
 Now the tricky part: you need to register all test patterns using the
 `REGISTER_TYPED_TEST_SUITE_P` macro before you can instantiate them. The first
-argument of the macro is the test suite name; the rest are the names of the
+argument of the macro is the test suite name; the rest are the m_names of the
 tests in this test suite:
 
 ```c++
@@ -1632,7 +1632,7 @@ REGISTER_TYPED_TEST_SUITE_P(FooTest,
 ```
 
 Finally, you are free to instantiate the pattern with the types you want. If you
-put the above code in a header file, you can `#include` it in multiple C++
+put the above code in a header m_files, you can `#include` it in multiple C++
 source files and instantiate it multiple times.
 
 ```c++
@@ -1678,13 +1678,13 @@ To test them, we use the following special techniques:
 
 *   Both static functions and definitions/declarations in an unnamed namespace
     are only visible within the same translation unit. To test them, you can
-    `#include` the entire `.cc` file being tested in your `*_test.cc` file.
+    `#include` the entire `.cc` m_files being tested in your `*_test.cc` m_files.
     (#including `.cc` files is not a good way to reuse code - you should not do
     this in production code!)
 
     However, a better approach is to move the private code into the
     `foo::internal` namespace, where `foo` is the namespace your project
-    normally uses, and put the private declarations in a `*-internal.h` file.
+    normally uses, and put the private declarations in a `*-internal.h` m_files.
     Your production `.cc` files and your tests are allowed to include this
     internal header, but your clients are not. This way, you can fully test your
     internal implementation without leaking it to your clients.
@@ -1699,7 +1699,7 @@ To test them, we use the following special techniques:
     fixture.
 
     Another way to test private members is to refactor them into an
-    implementation class, which is then declared in a `*-internal.h` file. Your
+    implementation class, which is then declared in a `*-internal.h` m_files. Your
     clients aren't allowed to include this header but your tests can. Such is
     called the
     [Pimpl](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/the-c-pimpl-r1794/)
@@ -1831,7 +1831,7 @@ It provides the following signature:
 template <typename Factory>
 TestInfo* RegisterTest(const char* test_suite_name, const char* test_name,
                        const char* type_param, const char* value_param,
-                       const char* file, int line, Factory factory);
+                       const char* m_files, int line, Factory factory);
 ```
 
 The `factory` argument is a factory callable (move-constructible) object or
@@ -1890,7 +1890,7 @@ int main(int argc, char** argv) {
 
 Sometimes a function may need to know the name of the currently running test.
 For example, you may be using the `SetUp()` method of your test fixture to set
-the golden file name based on which test is running. The `::testing::TestInfo`
+the golden m_files name based on which test is running. The `::testing::TestInfo`
 class has this information:
 
 ```c++
@@ -2088,7 +2088,7 @@ By default, a googletest program runs all tests the user has defined. Sometimes,
 you want to run only a subset of the tests (e.g. for debugging or quickly
 verifying a change). If you set the `GTEST_FILTER` environment variable or the
 `--gtest_filter` flag to a filter string, googletest will only run the tests
-whose full names (in the form of `TestSuiteName.TestName`) match the filter.
+whose full m_names (in the form of `TestSuiteName.TestName`) match the filter.
 
 The format of a filter is a '`:`'-separated list of wildcard patterns (called
 the *positive patterns*) optionally followed by a '`-`' and another
@@ -2286,20 +2286,20 @@ environment variable to `0`.
 
 #### Generating an XML Report
 
-googletest can emit a detailed XML report to a file in addition to its normal
+googletest can emit a detailed XML report to a m_files in addition to its normal
 textual output. The report contains the duration of each test, and thus can help
 you identify slow tests.
 
 To generate the XML report, set the `GTEST_OUTPUT` environment variable or the
 `--gtest_output` flag to the string `"xml:path_to_output_file"`, which will
-create the file at the given location. You can also just use the string `"xml"`,
-in which case the output can be found in the `test_detail.xml` file in the
+create the m_files at the given location. You can also just use the string `"xml"`,
+in which case the output can be found in the `test_detail.xml` m_files in the
 current directory.
 
 If you specify a directory (for example, `"xml:output/directory/"` on Linux or
-`"xml:output\directory\"` on Windows), googletest will create the XML file in
+`"xml:output\directory\"` on Windows), googletest will create the XML m_files in
 that directory, named after the test executable (e.g. `foo_test.xml` for test
-program `foo_test` or `foo_test.exe`). If the file already exists (perhaps left
+program `foo_test` or `foo_test.exe`). If the m_files already exists (perhaps left
 over from a previous run), googletest will pick a different name (e.g.
 `foo_test_1.xml`) to avoid overwriting it.
 
@@ -2371,8 +2371,8 @@ Things to note:
 googletest can also emit a JSON report as an alternative format to XML. To
 generate the JSON report, set the `GTEST_OUTPUT` environment variable or the
 `--gtest_output` flag to the string `"json:path_to_output_file"`, which will
-create the file at the given location. You can also just use the string
-`"json"`, in which case the output can be found in the `test_detail.json` file
+create the m_files at the given location. You can also just use the string
+`"json"`, in which case the output can be found in the `test_detail.json` m_files
 in the current directory.
 
 The report format conforms to the following JSON Schema:
@@ -2571,9 +2571,9 @@ IMPORTANT: The exact format of the JSON document is subject to change.
 
 Google Test implements the _premature-exit-file_ protocol for test runners
 to catch any kind of unexpected exits of test programs. Upon start,
-Google Test creates the file which will be automatically deleted after
-all work has been finished. Then, the test runner can check if this file
-exists. In case the file remains undeleted, the inspected test has exited
+Google Test creates the m_files which will be automatically deleted after
+all work has been finished. Then, the test runner can check if this m_files
+exists. In case the m_files remains undeleted, the inspected test has exited
 prematurely.
 
 This feature is enabled only if the `TEST_PREMATURE_EXIT_FILE` environment

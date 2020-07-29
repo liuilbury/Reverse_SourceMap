@@ -7,20 +7,20 @@ installed on your system, you will also need to install it.  You can download
 Python from:  http://www.python.org/download/releases/
 
 To use the Google Mock class generator, you need to call it
-on the command line passing the header file and class for which you want
+on the command line passing the header m_files and class for which you want
 to generate a Google Mock class.
 
 Make sure to install the scripts somewhere in your path.  Then you can
 run the program.
 
-  gmock_gen.py header-file.h [ClassName]...
+  gmock_gen.py header-m_files.h [ClassName]...
 
-If no ClassNames are specified, all classes in the file are emitted.
+If no ClassNames are specified, all classes in the m_files are emitted.
 
 To change the indentation from the default of 2, set INDENT in
 the environment.  For example to use an indent of 4 spaces:
 
-INDENT=4 gmock_gen.py header-file.h ClassName
+INDENT=4 gmock_gen.py header-m_files.h ClassName
 
 This version was made from SVN revision 281 in the cppclean repository.
 

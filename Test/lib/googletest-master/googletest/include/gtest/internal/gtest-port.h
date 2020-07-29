@@ -1978,7 +1978,7 @@ inline char* StrDup(const char* src) { return _strdup(src); }
 # endif  // __BORLANDC__
 
 # if GTEST_OS_WINDOWS_MOBILE
-inline int FileNo(FILE* file) { return reinterpret_cast<int>(_fileno(file)); }
+inline int FileNo(FILE* m_files) { return reinterpret_cast<int>(_fileno(m_files)); }
 // Stat(), RmDir(), and IsDir() are not needed on Windows CE at this
 // time and thus not defined there.
 # else
@@ -1993,7 +1993,7 @@ inline bool IsDir(const StatStruct& st) {
 #elif GTEST_OS_ESP8266
 typedef struct stat StatStruct;
 
-inline int FileNo(FILE* file) { return fileno(file); }
+inline int FileNo(FILE* m_files) { return fileno(m_files); }
 inline int DoIsATTY(int fd) { return isatty(fd); }
 inline int Stat(const char* path, StatStruct* buf) {
   // stat function not implemented on ESP8266
@@ -2010,7 +2010,7 @@ inline bool IsDir(const StatStruct& st) { return S_ISDIR(st.st_mode); }
 
 typedef struct stat StatStruct;
 
-inline int FileNo(FILE* file) { return fileno(file); }
+inline int FileNo(FILE* m_files) { return fileno(m_files); }
 inline int DoIsATTY(int fd) { return isatty(fd); }
 inline int Stat(const char* path, StatStruct* buf) { return stat(path, buf); }
 inline int StrCaseCmp(const char* s1, const char* s2) {

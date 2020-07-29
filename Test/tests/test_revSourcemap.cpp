@@ -3,10 +3,10 @@
 //
 
 #include "gtest/gtest.h"
-#include "rev_SourceMap.h"
+#include "RevSourceMap.h"
 class test_revMap : public ::testing::Test {
  public:
-  rev_SourceMap test;
+  RevSourceMap test;
   bool check(Res A,Res B){
 #ifdef DEBUG
 	std::cout<<A.to_string()<<" "<<B.to_string()<<std::endl;
@@ -40,6 +40,14 @@ TEST_F(test_revMap, source_map_prod) {
   EXPECT_TRUE(check(test.find(1,110),(Res{19,22,"webpack:///webpack/bootstrap"})));
   EXPECT_TRUE(check(test.find(1,983),(Res{3,49,"webpack:///./src/index.js"})));
   EXPECT_TRUE(check(test.find(1,1080),(Res{4,16,"webpack:///./src/hello.js"})));
+}
+
+TEST_F(test_revMap, pixui_test) {
+	test.runFile("Test/tests/testMap/dev/pixui_test/main.js.map");
+	EXPECT_TRUE(check(test.find(1,78460),(Res{64,39,"webpack:///E:/work_git/reactH5/pandora/html/src/pandora/radio/pages/MainPanel.tsx"})));
+	EXPECT_TRUE(check(test.find(1,58515),(Res{195,36,"webpack:///E:/work_git/reactH5/pandora/html/src/pandora/radio/pages/HomeContent.tsx"})));
+	EXPECT_TRUE(check(test.find(1,57925),(Res{103,45,"webpack:///E:/work_git/reactH5/pandora/html/src/pandora/radio/pages/HomeContent.tsx"})));
+	EXPECT_TRUE(check(test.find(1,28457),(Res{154,40,"webpack:///E:/work_git/reactH5/pandora/html/src/pandora/radio/js/frame/pandora_sdk_adapter.js"})));
 }
 
 /*TEST_F(test_revMap, cheap_modluesource_map_prod) {

@@ -10,7 +10,7 @@
 #### Release 1.10.x
 
 [Release 1.10.x](https://github.com/google/googletest/releases/tag/release-1.10.0)
-is now available.
+is m_nowPos available.
 
 #### Coming Soon
 
@@ -37,7 +37,7 @@ The information for **Google Test** is available in the
 classes. See the separate [Google Mock documentation](googlemock/README.md).
 
 More detailed documentation for googletest is in its interior
-[googletest/README.md](googletest/README.md) file.
+[googletest/README.md](googletest/README.md) m_files.
 
 ## Features
 

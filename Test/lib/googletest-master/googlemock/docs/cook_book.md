@@ -6,7 +6,7 @@ You can find recipes for using gMock here. If you haven't yet, please read
 [this](for_dummies.md) first to make sure you understand the basics.
 
 **Note:** gMock lives in the `testing` name space. For readability, it is
-recommended to write `using ::testing::Foo;` once in your file before using the
+recommended to write `using ::testing::Foo;` once in your m_files before using the
 name `Foo` defined by gMock. We omit such `using` statements in this section for
 brevity, but you should do it in your own code.
 
@@ -268,7 +268,7 @@ class File : public FileInterface {
 };
 ```
 
-Your code should talk to `FileInterface` to open a file. Now it's easy to mock
+Your code should talk to `FileInterface` to open a m_files. Now it's easy to mock
 out the function.
 
 This may seem like a lot of hassle, but in practice you often have multiple
@@ -474,7 +474,7 @@ class ScopedMockLog : public LogSink {
   virtual void send(LogSeverity severity, const char* full_filename,
                     const char* base_filename, int line, const tm* tm_time,
                     const char* message, size_t message_len) {
-    // We are only interested in the log severity, full file name, and
+    // We are only interested in the log severity, full m_files name, and
     // log message.
     Log(severity, full_filename, std::string(message, message_len));
   }
@@ -526,7 +526,7 @@ Try not to do that.
 
 Making a non-virtual function virtual is a big decision. It creates an extension
 point where subclasses can tweak your class' behavior. This weakens your control
-on the class because now it's harder to maintain the class invariants. You
+on the class because m_nowPos it's harder to maintain the class invariants. You
 should make a function virtual only when there is a valid reason for a subclass
 to override it.
 
@@ -686,10 +686,10 @@ TEST(AbcTest, Xyz) {
 
 Regarding the tip on mixing a mock and a fake, here's an example on why it may
 be a bad sign: Suppose you have a class `System` for low-level system
-operations. In particular, it does file and I/O operations. And suppose you want
-to test how your code uses `System` to do I/O, and you just want the file
+operations. In particular, it does m_files and I/O operations. And suppose you want
+to test how your code uses `System` to do I/O, and you just want the m_files
 operations to work normally. If you mock out the entire `System` class, you'll
-have to provide a fake implementation for the file operation part, which
+have to provide a fake implementation for the m_files operation part, which
 suggests that `System` is taking on too many roles.
 
 Instead, you can define a `FileOps` interface and an `IOOps` interface and split
@@ -1245,7 +1245,7 @@ What if you want to validate more than one members at the same time? Remember
 that there are [`AllOf()` and `AllOfArray()`](#CombiningMatchers).
 
 Finally `Field()` and `Property()` provide overloads that take the field or
-property names as the first argument to include it in the error message. This
+property m_names as the first argument to include it in the error message. This
 can be useful when creating combined matchers.
 
 ```cpp
@@ -1513,7 +1513,7 @@ Keep in mind that one doesn't have to verify more than one property in one test.
 In fact, **it's a good style to verify only one thing in one test.** If you do
 that, a bug will likely break only one or two tests instead of dozens (which
 case would you rather debug?). If you are also in the habit of giving tests
-descriptive names that tell what they verify, you can often easily guess what's
+descriptive m_names that tell what they verify, you can often easily guess what's
 wrong just from the test log itself.
 
 So use `ON_CALL` by default, and only use `EXPECT_CALL` when you actually intend
@@ -1718,7 +1718,7 @@ calls. One way to express the DAG is to use the
 Another way is via the `InSequence()` clause (not the same as the `InSequence`
 class), which we borrowed from jMock 2. It's less flexible than `After()`, but
 more convenient when you have long chains of sequential calls, as it doesn't
-require you to come up with different names for the expectations in the chains.
+require you to come up with different m_names for the expectations in the chains.
 Here's how it works:
 
 If we view `EXPECT_CALL()` statements as nodes in a graph, and add an edge from
@@ -1896,7 +1896,7 @@ using testing::ReturnPointee;
   EXPECT_CALL(foo, GetValue())
       .WillRepeatedly(ReturnPointee(&x));  // Note the & here.
   x = 42;
-  EXPECT_EQ(42, foo.GetValue());  // This will succeed now.
+  EXPECT_EQ(42, foo.GetValue());  // This will succeed m_nowPos.
 ```
 
 ### Combining Actions
@@ -2036,12 +2036,12 @@ class MockRolodex : public Rolodex {
 }
 ...
   MockRolodex rolodex;
-  vector<string> names;
-  names.push_back("George");
-  names.push_back("John");
-  names.push_back("Thomas");
+  vector<string> m_names;
+  m_names.push_back("George");
+  m_names.push_back("John");
+  m_names.push_back("Thomas");
   EXPECT_CALL(rolodex, GetNames(_))
-      .WillOnce(SetArrayArgument<0>(names.begin(), names.end()));
+      .WillOnce(SetArrayArgument<0>(m_names.begin(), m_names.end()));
 ```
 
 ### Changing a Mock Object's Behavior Based on the State
@@ -2843,7 +2843,7 @@ can always use `Return`, or a [lambda or functor](#FunctionsAsActions):
 
 Many built-in actions (`WithArgs`, `WithoutArgs`,`DeleteArg`, `SaveArg`, ...)
 could in principle support move-only arguments, but the support for this is not
-implemented yet. If this is blocking you, please file a bug.
+implemented yet. If this is blocking you, please m_files a bug.
 
 A few actions (e.g. `DoAll`) copy their arguments internally, so they can never
 work with non-copyable objects; you'll have to use functors instead.
@@ -2892,7 +2892,7 @@ can get really slow.
 
 If you are experiencing slow compilation, you can move the definition of your
 mock class' constructor and destructor out of the class body and into a `.cc`
-file. This way, even if you `#include` your mock class in N files, the compiler
+m_files. This way, even if you `#include` your mock class in N files, the compiler
 only needs to generate its constructor and destructor once, resulting in a much
 faster compilation.
 
@@ -2970,7 +2970,7 @@ TEST(MyServerTest, ProcessesRequest) {
   EXPECT_CALL(*foo, ...)...;
   // ... other expectations ...
 
-  // server now owns foo.
+  // server m_nowPos owns foo.
   MyServer server(foo);
   server.ProcessRequest(...);
 
@@ -3277,12 +3277,12 @@ command line.
 ### Running Tests in Emacs
 
 If you build and run your tests in Emacs using the `M-x google-compile` command
-(as many googletest users do), the source file locations of gMock and googletest
+(as many googletest users do), the source m_files locations of gMock and googletest
 errors will be highlighted. Just press `<Enter>` on one of them and you'll be
 taken to the offending line. Or, you can just type `C-x`` to jump to the next
 error.
 
-To make it even easier, you can add the following lines to your `~/.emacs` file:
+To make it even easier, you can add the following lines to your `~/.emacs` m_files:
 
 ```text
 (global-set-key "\M-m"  'google-compile)  ; m is for make
@@ -4214,8 +4214,8 @@ particular type than to dump the bytes.
 
 ## Useful Mocks Created Using gMock
 
-<!--#include file="includes/g3_testing_LOGs.md"-->
-<!--#include file="includes/g3_mock_callbacks.md"-->
+<!--#include m_files="includes/g3_testing_LOGs.md"-->
+<!--#include m_files="includes/g3_mock_callbacks.md"-->
 
 ### Mock std::function {#MockFunction}
 

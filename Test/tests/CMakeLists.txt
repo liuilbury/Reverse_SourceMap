@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.16)
 aux_source_directory(../../Project/src project_src)
 aux_source_directory(./ test_src)
 add_executable(run_actual_tests  ${project_src} ${test_src} test_revSourcemap.cpp)

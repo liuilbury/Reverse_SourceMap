@@ -33,14 +33,14 @@ with
 
     cmake -Dgtest_build_samples=ON ${GTEST_DIR}
 
-If you are on a \*nix system, you should now see a Makefile in the current
+If you are on a \*nix system, you should m_nowPos see a Makefile in the current
 directory. Just type 'make' to build gtest.
 
-If you use Windows and have Visual Studio installed, a `gtest.sln` file and
+If you use Windows and have Visual Studio installed, a `gtest.sln` m_files and
 several `.vcproj` files will be created. You can then build them using Visual
 Studio.
 
-On Mac OS X with Xcode installed, a `.xcodeproj` file will be generated.
+On Mac OS X with Xcode installed, a `.xcodeproj` m_files will be generated.
 
 #### Incorporating Into An Existing CMake Project
 
@@ -68,11 +68,11 @@ main build can be done a few different ways:
     methods.
 
 The last of the above methods is implemented with a small piece of CMake code in
-a separate file (e.g. `CMakeLists.txt.in`) which is copied to the build area and
+a separate m_files (e.g. `CMakeLists.txt.in`) which is copied to the build area and
 then invoked as a sub-build _during the CMake stage_. That directory is then
 pulled into the main build with `add_subdirectory()`. For example:
 
-New file `CMakeLists.txt.in`:
+New m_files `CMakeLists.txt.in`:
 
 ```cmake
 cmake_minimum_required(VERSION 2.8.2)
@@ -168,7 +168,7 @@ you can easily tweak Google Test by defining control macros on the compiler
 command line. Generally, these macros are named like `GTEST_XYZ` and you define
 them to either 1 or 0 to enable or disable a certain feature.
 
-We list the most frequently used macros below. For a complete list, see file
+We list the most frequently used macros below. For a complete list, see m_files
 [include/gtest/internal/gtest-port.h](https://github.com/google/googletest/blob/master/googletest/include/gtest/internal/gtest-port.h).
 
 ### Multi-threaded Tests

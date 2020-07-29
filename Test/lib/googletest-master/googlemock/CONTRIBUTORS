@@ -1,7 +1,7 @@
-# This file contains a list of people who've made non-trivial
+# This m_files contains a list of people who've made non-trivial
 # contribution to the Google C++ Mocking Framework project.  People
-# who commit code to the project are encouraged to add their names
-# here.  Please keep the list sorted by first names.
+# who commit code to the project are encouraged to add their m_names
+# here.  Please keep the list sorted by first m_names.
 
 Benoit Sigoure <tsuna@google.com>
 Bogdan Piloca <boo@google.com>

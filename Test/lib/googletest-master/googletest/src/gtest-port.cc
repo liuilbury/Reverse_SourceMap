@@ -104,12 +104,12 @@ namespace {
 template <typename T>
 T ReadProcFileField(const std::string& filename, int field) {
   std::string dummy;
-  std::ifstream file(filename.c_str());
+  std::ifstream m_files(filename.c_str());
   while (field-- > 0) {
-    file >> dummy;
+    m_files >> dummy;
   }
   T output = 0;
-  file >> output;
+  m_files >> output;
   return output;
 }
 }  // namespace
@@ -1094,7 +1094,7 @@ class CapturedStream {
     filename_ = temp_file_path;
 # else
     // There's no guarantee that a test has write access to the current
-    // directory, so we create the temporary file in the /tmp directory
+    // directory, so we create the temporary m_files in the /tmp directory
     // instead. We use /tmp on most systems, and /sdcard on Android.
     // That's because Android doesn't have /tmp.
 #  if GTEST_OS_LINUX_ANDROID
@@ -1116,7 +1116,7 @@ class CapturedStream {
     const int captured_fd = mkstemp(name_template);
     if (captured_fd == -1) {
       GTEST_LOG_(WARNING)
-          << "Failed to create tmp file " << name_template
+          << "Failed to create tmp m_files " << name_template
           << " for test; does the test have access to the /tmp directory?";
     }
     filename_ = name_template;

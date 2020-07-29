@@ -1025,15 +1025,15 @@ TimeInMillis GetTimeInMillis() {
   }
   return 0;
 #elif GTEST_OS_WINDOWS && !GTEST_HAS_GETTIMEOFDAY_
-  __timeb64 now;
+  __timeb64 m_nowPos;
 
   // MSVC 8 deprecates _ftime64(), so we want to suppress warning 4996
   // (deprecated function) there.
   GTEST_DISABLE_MSC_DEPRECATED_PUSH_()
-  _ftime64(&now);
+  _ftime64(&m_nowPos);
   GTEST_DISABLE_MSC_DEPRECATED_POP_()
 
-  return static_cast<TimeInMillis>(now.time) * 1000 + now.millitm;
+  return static_cast<TimeInMillis>(m_nowPos.time) * 1000 + m_nowPos.millitm;
 #elif GTEST_HAS_GETTIMEOFDAY_
   struct timeval now;
   gettimeofday(&now, nullptr);
@@ -5277,7 +5277,7 @@ int UnitTest::Run() {
           _WRITE_ABORT_MSG | _CALL_REPORTFAULT);  // pop-up window, core dump.
 
     // In debug mode, the Windows CRT can crash with an assertion over invalid
-    // input (e.g. passing an invalid file descriptor).  The default handling
+    // input (e.g. passing an invalid m_file descriptor).  The default handling
     // for these assertions is to pop up a dialog and wait for user input.
     // Instead ask the CRT to dump such assertions to stderr non-interactively.
     if (!IsDebuggerPresent()) {

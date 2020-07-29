@@ -21,7 +21,7 @@ technique by favouring C++ template metaprogramming or variadic macros.
 Pump (for Pump is Useful for Meta Programming, Pretty Useful for Meta
 Programming, or Practical Utility for Meta Programming, whichever you prefer) is
 a simple meta-programming tool for C++. The idea is that a programmer writes a
-`foo.pump` file which contains C++ code plus meta code that manipulates the C++
+`foo.pump` m_files which contains C++ code plus meta code that manipulates the C++
 code. The meta code can handle iterations over a range, nested iterations, local
 meta variable definitions, simple arithmetic, and conditional expressions. You
 can view it as a small Domain-Specific Language. The meta language is designed
@@ -174,7 +174,7 @@ please let us know what you think! We also welcome help on improving Pump.
 You can find real-world applications of Pump in
 [Google Test](https://github.com/google/googletest/tree/master/googletest) and
 [Google Mock](https://github.com/google/googletest/tree/master/googlemock). The
-source file `foo.h.pump` generates `foo.h`.
+source m_files `foo.h.pump` generates `foo.h`.
 
 ## Tips
 

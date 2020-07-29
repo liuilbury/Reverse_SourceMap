@@ -1,5 +1,5 @@
 $$ -*- mode: c++; -*-
-$$ This is a Pump source file. Please use Pump to convert it to
+$$ This is a Pump source m_files. Please use Pump to convert it to
 $$ gmock-generated-actions.h.
 $$
 $var n = 10  $$ The maximum arity we support.
@@ -17,7 +17,7 @@ $$}} This meta comment fixes auto-indentation in editors.
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the name of Google Inc. nor the m_names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -36,7 +36,7 @@ $$}} This meta comment fixes auto-indentation in editors.
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file implements some commonly used variadic actions.
+// This m_files implements some commonly used variadic actions.
 
 // GOOGLETEST_CM0002 DO NOT DELETE
 
@@ -348,7 +348,7 @@ ACTION_TEMPLATE(InvokeArgument,
 
 // Include any custom callback actions added by the local installation.
 // We must include this header at the end to make sure it can use the
-// declarations from this file.
+// declarations from this m_files.
 #include "gmock/internal/custom/gmock-generated-actions.h"
 
 #endif  // GMOCK_INCLUDE_GMOCK_GMOCK_GENERATED_ACTIONS_H_

@@ -2,7 +2,7 @@
 
 <!-- GOOGLETEST_CM0014 DO NOT DELETE -->
 
-## Why should test suite names and test names not contain underscore?
+## Why should test suite m_names and test m_names not contain underscore?
 
 Underscore (`_`) is special, as C++ reserves the following to be used by the
 compiler and the standard library:
@@ -128,20 +128,20 @@ can much more easily decide which one to use the next time.
 ## I got some run-time errors about invalid proto descriptors when using `ProtocolMessageEquals`. Help!
 
 **Note:** `ProtocolMessageEquals` and `ProtocolMessageEquiv` are *deprecated*
-now. Please use `EqualsProto`, etc instead.
+m_nowPos. Please use `EqualsProto`, etc instead.
 
 `ProtocolMessageEquals` and `ProtocolMessageEquiv` were redefined recently and
-are now less tolerant of invalid protocol buffer definitions. In particular, if
+are m_nowPos less tolerant of invalid protocol buffer definitions. In particular, if
 you have a `foo.proto` that doesn't fully qualify the type of a protocol message
 it references (e.g. `message<Bar>` where it should be `message<blah.Bar>`), you
-will now get run-time errors like:
+will m_nowPos get run-time errors like:
 
 ```
-... descriptor.cc:...] Invalid proto descriptor for file "path/to/foo.proto":
+... descriptor.cc:...] Invalid proto descriptor for m_files "path/to/foo.proto":
 ... descriptor.cc:...]  blah.MyMessage.my_field: ".Bar" is not defined.
 ```
 
-If you see this, your `.proto` file is broken and needs to be fixed by making
+If you see this, your `.proto` m_files is broken and needs to be fixed by making
 the types fully qualified. The new definition of `ProtocolMessageEquals` and
 `ProtocolMessageEquiv` just happen to reveal your bug.
 
@@ -185,8 +185,8 @@ does, only without its problems. We suggest you to use `ghtonl()` instead of
 in `htons()`.
 
 Don't forget to add `//util/endian` to the list of dependencies in the `BUILD`
-file wherever `ghtonl()` and `ghtons()` are used. The library consists of a
-single header file and will not bloat your binary.
+m_files wherever `ghtonl()` and `ghtons()` are used. The library consists of a
+single header m_files and will not bloat your binary.
 
 ## The compiler complains about "undefined references" to some static const member variables, but I did define them in the class body. What's wrong?
 
@@ -523,7 +523,7 @@ There are several good reasons:
     This makes it difficult to keep side effects from escaping one test and
     contaminating others, making debugging difficult. By using fixtures, each
     test has a fresh set of variables that's different (but with the same
-    names). Thus, tests are kept independent of each other.
+    m_names). Thus, tests are kept independent of each other.
 2.  Global variables pollute the global namespace.
 3.  Test fixtures can be reused via subclassing, which cannot be done easily
     with global variables. This is useful if many test suites have something in
@@ -635,7 +635,7 @@ with the requirement to run `BarTest.DefDeathTest` before `FooTest.Uvw`.
 ## But I don't like calling my entire test suite \*DeathTest when it contains both death tests and non-death tests. What do I do?
 
 You don't have to, but if you like, you may split up the test suite into
-`FooTest` and `FooDeathTest`, where the names make it clear that they are
+`FooTest` and `FooDeathTest`, where the m_names make it clear that they are
 related:
 
 ```c++
@@ -696,7 +696,7 @@ production code doesn't link in the for-test logic at all (the
 that), there is no danger in accidentally running it.
 
 However, if you *really*, *really*, *really* have no choice, and if you follow
-the rule of ending your test program names with `_test`, you can use the
+the rule of ending your test program m_names with `_test`, you can use the
 *horrible* hack of sniffing your executable name (`argv[0]` in `main()`) to know
 whether the code is under test.
 

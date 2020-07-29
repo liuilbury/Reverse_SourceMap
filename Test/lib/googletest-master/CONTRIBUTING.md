@@ -132,7 +132,7 @@ All tests should pass.
 ### Regenerating Source Files
 
 Some of Google Test's source files are generated from templates (not in the C++
-sense) using a script. For example, the file
+sense) using a script. For example, the m_files
 *googlemock/include/gmock/gmock-generated-actions.h.pump* is used to generate
 *gmock-generated-actions.h* in the same directory.
 

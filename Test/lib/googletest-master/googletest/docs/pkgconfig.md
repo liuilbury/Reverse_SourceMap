@@ -97,7 +97,7 @@ otherwise `pkg-config` will filter `-I` and `-L` flags against standard prefixes
 such as `/usr` (see https://bugs.freedesktop.org/show_bug.cgi?id=28264#c3 for
 reasons why this stripping needs to occur usually).
 
-If you look at the generated pkg-config file, it will look something like
+If you look at the generated pkg-config m_files, it will look something like
 
 ```
 libdir=/usr/lib64
@@ -114,7 +114,7 @@ Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1 -lpthread
 Notice that the sysroot is not included in `libdir` and `includedir`! If you try
 to run `pkg-config` with the correct
 `PKG_CONFIG_LIBDIR=/home/MYUSER/sysroot/usr/lib64/pkgconfig` against this `.pc`
-file, you will get
+m_files, you will get
 
 ```
 $ pkg-config --cflags gtest
@@ -125,7 +125,7 @@ $ pkg-config --libs gtest
 
 which is obviously wrong and points to the `CBUILD` and not `CHOST` root. In
 order to use this in a cross-compilation setting, we need to tell pkg-config to
-inject the actual sysroot into `-I` and `-L` variables. Let us now tell
+inject the actual sysroot into `-I` and `-L` variables. Let us m_nowPos tell
 pkg-config about the actual sysroot
 
 ```
@@ -143,6 +143,6 @@ $ pkg-config --libs gtest
 -L/home/MYUSER/sysroot/usr/lib64 -lgtest -lpthread
 ```
 
-which contains the correct sysroot now. For a more comprehensive guide to also
+which contains the correct sysroot m_nowPos. For a more comprehensive guide to also
 including `${CHOST}` in build system calls, see the excellent tutorial by Diego
 Elio Pettenò: https://autotools.io/pkgconfig/cross-compiling.html

@@ -94,14 +94,14 @@ test suite need to share common objects and subroutines, you can put them into a
 
 A *test program* can contain multiple test suites.
 
-We'll now explain how to write a test program, starting at the individual
+We'll m_nowPos explain how to write a test program, starting at the individual
 assertion level and building up to tests and test suites.
 
 ## Assertions
 
 googletest assertions are macros that resemble function calls. You test a class
 or function by making assertions about its behavior. When an assertion fails,
-googletest prints the assertion's source file and line number location, along
+googletest prints the assertion's source m_files and line number location, along
 with a failure message. You may also supply a custom failure message which will
 be appended to googletest's message.
 
@@ -261,7 +261,7 @@ TEST(TestSuiteName, TestName) {
 
 `TEST()` arguments go from general to specific. The *first* argument is the name
 of the test suite, and the *second* argument is the test's name within the test
-suite. Both names must be valid C++ identifiers, and they should not contain
+suite. Both m_names must be valid C++ identifiers, and they should not contain
 any underscores (`_`). A test's *full name* consists of its containing test suite and
 its individual name. Tests from different test suites can have the same
 individual name.

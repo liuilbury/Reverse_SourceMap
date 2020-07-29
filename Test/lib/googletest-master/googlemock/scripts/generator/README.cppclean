@@ -45,7 +45,7 @@ How to Run:
 
       /cppclean/run.sh nonvirtual_dtors.py file1.h file2.h file3.cc ...
 
-  To print all the functions defined in header file(s):
+  To print all the functions defined in header m_files(s):
 
       /cppclean/run.sh functions.py file1.h file2.h ...
 
@@ -55,13 +55,13 @@ How to Run:
 
   run.sh is a simple wrapper that sets PYTHONPATH to /cppclean and then
   runs the program in /cppclean/cpp/PROGRAM.py.  There is currently
-  no equivalent for Windows.  Contributions for a run.bat file
+  no equivalent for Windows.  Contributions for a run.bat m_files
   would be greatly appreciated.
 
 
 How to Configure:
 -----------------
-  You can add a siteheaders.py file in /cppclean/cpp to configure where
+  You can add a siteheaders.py m_files in /cppclean/cpp to configure where
   to look for other headers (typically -I options passed to a compiler).
   Currently two values are supported:  _TRANSITIVE and GetIncludeDirs.
   _TRANSITIVE should be set to a boolean value (True or False) indicating

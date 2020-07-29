@@ -28,7 +28,7 @@ Called 2 times, but only 1 WillOnce() is specified - returning default value.
 Stack trace:
 [       OK ] GMockOutputTest.ExplicitActionsRunOut
 [ RUN      ] GMockOutputTest.UnexpectedCall
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar2(1, 0)
@@ -42,7 +42,7 @@ FILE:#: EXPECT_CALL(foo_, Bar2(0, _))...
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.UnexpectedCall
 [ RUN      ] GMockOutputTest.UnexpectedCallToVoidFunction
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning directly.
     Function call: Bar3(1, 0)
@@ -85,7 +85,7 @@ Uninteresting mock function call - returning directly.
 NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/master/googlemock/docs/cook_book.md#knowing-when-to-expect for details.
 [       OK ] GMockOutputTest.UninterestingCallToVoidFunction
 [ RUN      ] GMockOutputTest.RetiredExpectation
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar2(1, 1)
@@ -106,7 +106,7 @@ FILE:#: tried expectation #1: EXPECT_CALL(foo_, Bar2(0, 0))...
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.RetiredExpectation
 [ RUN      ] GMockOutputTest.UnsatisfiedPrerequisite
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar2(1, 0)
@@ -127,7 +127,7 @@ FILE:#: pre-requisite #0
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.UnsatisfiedPrerequisite
 [ RUN      ] GMockOutputTest.UnsatisfiedPrerequisites
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar2(1, 0)
@@ -166,7 +166,7 @@ Actual function call count doesn't match EXPECT_CALL(foo_, Bar(_, _, _))...
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.UnsatisfiedExpectation
 [ RUN      ] GMockOutputTest.MismatchArguments
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar(@0x# "Ho", 0, -0.1)
@@ -182,7 +182,7 @@ FILE:#: EXPECT_CALL(foo_, Bar(Ref(s), _, Ge(0)))...
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.MismatchArguments
 [ RUN      ] GMockOutputTest.MismatchWith
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar2(2, 3)
@@ -196,7 +196,7 @@ FILE:#: EXPECT_CALL(foo_, Bar2(Ge(2), Ge(1)))...
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.MismatchWith
 [ RUN      ] GMockOutputTest.MismatchArgumentsAndWith
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - returning default value.
     Function call: Bar2(1, 3)
@@ -212,7 +212,7 @@ FILE:#: EXPECT_CALL(foo_, Bar2(Ge(2), Ge(1)))...
            Actual: never called - unsatisfied and active
 [  FAILED  ] GMockOutputTest.MismatchArgumentsAndWith
 [ RUN      ] GMockOutputTest.UnexpectedCallWithDefaultAction
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - taking default action specified at:
 FILE:#:
@@ -227,7 +227,7 @@ FILE:#: EXPECT_CALL(foo_, Bar2(2, 2))...
            Actual: 0
          Expected: to be called once
            Actual: never called - unsatisfied and active
-unknown file: Failure
+unknown m_files: Failure
 
 Unexpected mock function call - taking default action specified at:
 FILE:#:
